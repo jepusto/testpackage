@@ -23,7 +23,7 @@ fancy_function <- function (data, formula, ...) {
   mf <- match.call(expand.dots = FALSE)
   m <- match(c("data", "formula"), names(mf), 0L)
   mf <- mf[c(1L, m)]
-  mf[[1L]] <- quote(internal_fun)
+  mf[[1L]] <- str2lang("internal_fun")
   mf <- eval(mf, parent.frame())
 
   return(mf)
@@ -49,7 +49,7 @@ fancier_function <- function (data, formula, ...) {
   mf <- match.call(expand.dots = FALSE)
   m <- match(c("data", "formula"), names(mf), 0L)
   mf <- mf[c(1L, m)]
-  mf[[1L]] <- quote(testpackage:::internal_fun)
+  mf[[1L]] <- str2lang("testpackage:::internal_fun")
   mf <- eval(mf, parent.frame())
 
   return(mf)
